@@ -1,9 +1,15 @@
 import React from "react";
 import useReveal from "../hooks/useReveal";
 import PageHeader from "../components/PageHeader";
+import mainImg from "../assets/images/dining-main.svg";
+import terraceImg from "../assets/images/dining-terrace.svg";
+import barImg from "../assets/images/dining-bar.svg";
 
 export default function Dining({ setPage }) {
   useReveal();
+
+  const images = [mainImg, terraceImg, barImg];
+
   return (
     <div style={{ paddingTop:"6rem" }}>
       <PageHeader title="Dining at Elara" sub="Restaurant" />
@@ -24,8 +30,8 @@ export default function Dining({ setPage }) {
               <p style={{ color:"var(--muted)", lineHeight:1.9, fontSize:"0.95rem" }}>{d.desc}</p>
               <button onClick={() => { setPage("Reservations"); window.scrollTo(0,0); }} style={{ marginTop:"2rem", background:"none", border:"1px solid var(--rule)", color:"var(--gold)", padding:"0.8rem 1.8rem", cursor:"pointer", fontSize:"0.65rem", letterSpacing:"0.25em", textTransform:"uppercase", fontFamily:"'Jost',sans-serif", transition:"all 0.3s" }} onMouseEnter={e=>{e.target.style.background="var(--gold)";e.target.style.color="var(--ink)"}} onMouseLeave={e=>{e.target.style.background="none";e.target.style.color="var(--gold)"}}>Reserve</button>
             </div>
-            <div style={{ aspectRatio:"5/4", order: i%2===1 ? 0 : 1, background:`linear-gradient(${135+i*30}deg, hsl(${200+i*30},${20+i*5}%,${10+i*3}%) 0%, hsl(30,40%,8%) 100%)`, display:"flex", alignItems:"center", justifyContent:"center", fontSize:"4rem", opacity: 1 }}>
-              <span style={{ opacity:0.12 }}>{["🍽️","☀️","🍷"][i]}</span>
+            <div style={{ aspectRatio:"5/4", order: i%2===1 ? 0 : 1, display:"flex", alignItems:"center", justifyContent:"center", overflow:"hidden", borderRadius:"1rem", boxShadow:"0 20px 40px rgba(0,0,0,0.25)" }}>
+              <img src={images[i]} alt={d.title} style={{ width:"100%", height:"100%", objectFit:"cover" }} />
             </div>
           </div>
         ))}
